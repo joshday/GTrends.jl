@@ -3,6 +3,9 @@ uuid = "ed4dbf2a-176b-4b81-912f-b07364427b72"
 authors = ["joshday <emailjoshday@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
+
 [compat]
 julia = "1"
 
