@@ -1,10 +1,14 @@
 module GTrends
 
-using RCall: @rimport, rcopy
+using RCall: rimport, rcopy
 
 export gtrends
 
-@rimport gtrendsR as GT
+gtrendsR = Ref{Module}()
+
+function __init__() 
+    gtrendsR[] = rimport("gtrendsR")
+end
 
 #-----------------------------------------------------------------------------# Query
 const UVS = Union{String, Vector{String}}
@@ -25,7 +29,7 @@ const UVS = Union{String, Vector{String}}
 """
 function gtrends(q::UVS; geo::UVS = "US", time::String = "all", gprop::UVS = "web", category::Int=0,
                  hl::String = "en-US", low_search_volume::Bool=false, tz="", onlyInterest=false)
-    rcopy(GT.gtrends(q; geo, time, gprop, category, hl, low_search_volume, onlyInterest))
+    rcopy(gtrendsR[].gtrends(q; geo, time, gprop, category, hl, low_search_volume, onlyInterest))
 end
 
 
